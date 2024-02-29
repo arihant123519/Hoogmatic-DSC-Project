@@ -168,17 +168,23 @@ include "connect.php";
                             </div>
 
                             <div class='col-md-6 mb-3 hidden' id="only_certificate_license">
-                                <label for='no_of_license' class='form-label'>No. of License</label>
-                                <input type='number' class='form-control' id='no_of_license' name='no_of_license'>
+                                <?php
+                                $lic_sql = mysqli_query($con, "SELECT no_of_license FROM no_of_license WHERE id='1' ");
+                                $lic_row = mysqli_fetch_assoc($lic_sql);
+                                $lic_row_no_of_license = $lic_row['no_of_license'];
+                                ?>
+                                <label for='no_of_license' class='form-label'>No. of License (<span class="text text-danger"><?php echo $lic_row_no_of_license ?></span> is the limited)</label>
+                                
+                                <input type='number' class='form-control' id='no_of_license' name='no_of_license' oninput='limitNumber(this, <?php echo $lic_row_no_of_license ?>)'>
                             </div>
 
                             <div class='col-md-6 mb-3 hidden' id="only_DSC_token">
                                 <label for='dsc_token_id' class='form-label'>Only DSC Token</label>
                                 <select class="form-select" id='dsc_token_id' name='dsc_token_id'>
                                     <option>Select Option</option>
-                                    <?php 
-                                    $dsc_sql=mysqli_query($con,"SELECT * FROM usb_token WHERE available='1' ");
-                                    while($dsc_row=mysqli_fetch_assoc($dsc_sql)){
+                                    <?php
+                                    $dsc_sql = mysqli_query($con, "SELECT * FROM usb_token WHERE available='1' ");
+                                    while ($dsc_row = mysqli_fetch_assoc($dsc_sql)) {
                                     ?>
                                         <option value="<?php echo $dsc_row['serial'] ?>"><?php echo $dsc_row['serial'] ?></option>
                                     <?php } ?>
@@ -314,6 +320,13 @@ include "connect.php";
                 });
             });
         });
+
+        function limitNumber(input, max) {
+            if (input.value > max) {
+                input.value = max;
+            }
+        }
+
 
         function showInput() {
             var selectedOption = document.getElementById('token_option').value;
