@@ -14,5 +14,5 @@ for ($i = 0; $i < $quantity; $i++) {
     mysqli_query($con,"INSERT INTO dsc_use(product, token, license_no, serial_no, certificate, quantity,options) VALUES ('$product', '$token', '$license_no', '$serial_no', '$certificate', '1','$options')");
 }
 
-header("Location: fetch.php");
+header("Location: index.php");
 ?>
