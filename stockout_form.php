@@ -25,5 +25,5 @@ mysqli_query($con, "UPDATE no_of_license SET no_of_license = no_of_license - $no
 mysqli_query($con,"UPDATE usb_token SET available='0' WHERE serial='$dsc_token_id' ");
 // echo "UPDATE usb_token SET available='0' WHERE serial='$dsc_token_id' ";
 //  echo "INSERT INTO stockout_form(no_of_license, dsc_token_id, order_id, lead_id, connector_code, remarks, token_option) VALUES ('$no_of_license', '$dsc_token_id', '$order_id', '$lead_id', '$connector_code', '$remarks', '$token_option')";
-header("Location: fetch.php");
+header("Location: index.php");
 ?>
