@@ -14,5 +14,5 @@ mysqli_query($con,"INSERT INTO license_record(certificate_license_id, issue, val
 
 mysqli_query($con,"UPDATE certificate_license SET license_no='$new_license_no' WHERE certificate_license_id='$certificate_license_id'");
 
-// header("Location: license_fetch.php");
+header("Location: license_fetch.php");
 ?>
